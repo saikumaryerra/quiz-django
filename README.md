@@ -12,4 +12,7 @@
 ####Role of Player
 
 * play quiz and see score
-* can chek scores of all users
+* can check scores of all users
+
+
+* commented out password authorisation code in settings.py
