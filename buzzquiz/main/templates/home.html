@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="display: flex;justify-content: space-between;">
+        <div style="background-color: aliceblue;border-radius: 1em;padding: 5px;width: 25%;">
+            <h4>All Quizzes</h4>
+            <ul>
+                {% for quiz in quizzes %}
+                <li>
+                    <a href="{% url 'play_quiz' quiz.id %}">{{ quiz.quizname}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div style="background-color: aliceblue;border-radius: 1em;padding: 5px;width: 65%;">
+                <h4>Leaderboard</h4>
+                <table border = "2" bordercolor = "#373d3f" >
+                    <tr>
+                        <th>Player Name</th>
+                        <th>score</th>
+                    </tr>
+                    {% for quiz in leaderboard %}
+                    <tr>
+                        <td>{{ quiz.player}}</td>
+                        <td>{{ quiz.score }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+        </div>
+    </div>
+{% endblock %}

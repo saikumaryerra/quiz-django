@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>add question</h2>
+<form method="POST" id="QA-form">{% csrf_token %}
+    {{ question_form.as_p }}
+    <!-- <button id="question-submit" type="submit" class="save btn btn-default">Save</button> -->
+</form>
+<button id="save-add-another">save and add another</button>
+<button id="save-exit">save and exit</button>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+<script>
+    function createButton(e){
+        var btnElement = document.createElement('button');
+        btnElement.setAttribute('id','question-submit');
+        btnElement.setAttribute('type','submit');
+        btnElement.setAttribute('class','save btn btn-default');
+        document.getElementById('QA-form').appendChild(btnElement);
+        btnElement.style.display = 'none';
+    }
+    function submitForm(e){
+        e.preventDefault();
+    }
+    function saveAndAdd(e){
+        createButton(e);
+        $('#question-submit').click();
+
+    }
+    
+    function saveExit(e){
+        createButton(e);
+        $('#question-submit').click();
+        window.location='{% url 'home' %}'
+    }
+
+    $(document).ready(function() {
+        $("#save-add-another").click(saveAndAdd);
+        $("#save-exit").click(saveExit);
+        $('#question-submit').click(submitForm);
+        
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="background-color: aliceblue;border-radius: 1em;padding: 5px;margin-bottom: 10px;">
+    <h2>Usename : {{ user }}</h2>
+</div>
+<div style="display: flex;justify-content: space-between;">
+    <div style="background-color: aliceblue;border-radius: 1em;padding: 5px;width: 25%;">
+        <h4>My Quizzes</h4>
+        <ul>
+            {% for quiz in my_quizzes %}
+            <li>
+                <a>{{ quiz.quizname}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div style="background-color: aliceblue;border-radius: 1em;padding: 5px;width: 65%;">
+            <h4>My Scores</h4>
+            <table border = "2" bordercolor = "#373d3f" >
+                <tr>
+                    <th>Quiz Name</th>
+                    <th>score</th>
+                </tr>
+                {% for quiz in my_quiz_attempts %}
+                <tr>
+                    <td>{{ quiz.quiz}}</td>
+                    <td>{{ quiz.score }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+    </div>
+</div>
+{% endblock %}
